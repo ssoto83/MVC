@@ -32,9 +32,7 @@ Please ensure to have the following dependencies installed:
 https://github.com/ssoto83/E-Commerce-Back-End.git  
 
 
-## Walkthrough video link
 
-https://drive.google.com/file/d/1aKXUbbfsnZQ5o3FgsHjPpBuqLxhLJ93R/view?usp=sharing  
 
 ## Application screenshot  
 
