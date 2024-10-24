@@ -17,7 +17,7 @@
                 {{#each posts}}
                     <article>
                         <h3><a href="/post/{{this.id}}">{{this.title}}</a></h3>
-                        <p>Posted by {{this.user.username}} on {{formatDate this.created_at}}</p>
+                        <p>Posted by {{this.user.username}} on {{this.created_at}}</p>
                         <p>{{this.content}}</p>
                     </article>
                 {{/each}}

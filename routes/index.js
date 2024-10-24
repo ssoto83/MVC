@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Post } = require('../models'); // To import the models
-
+const withAuth = require("../utils/authMiddleware")
 // Render the homepage
 router.get('/', async (req, res) => {
     try {
@@ -30,25 +30,37 @@ router.get('/', async (req, res) => {
   });
   
   // Login route
-  router.get('/login', (req, res) => {
-    res.render('login'); // Render login form
-  });
-  
   router.post('/login', async (req, res) => {
-    try {
-      const { username, password } = req.body;
-      const user = await User.findOne({ where: { username } });
-  
-      if (user && /* Check password */) {
-        req.session.userId = user.id; // Set user session
-        res.redirect('/'); // Redirect to homepage
-      } else {
-        res.status(401).json({ message: 'Invalid credentials' });
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Error logging in' });
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
-  });
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
+    });
+
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
   
   // Dashboard
   router.get('/dashboard', withAuth, async (req, res) => {

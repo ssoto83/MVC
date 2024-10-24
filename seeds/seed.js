@@ -3,22 +3,22 @@ const { User, Post } = require('../models'); // Adjust based on your model expor
 
 const userData = [
     {
-        username: 'Susan Soto',
+        name: 'Susan Soto',
         email: 'susans@email.com',
         password: 'password123',
     },
     {
-        username: 'Milo Soto',
+        name: 'Milo Soto',
         email: 'Msoto@email.com',
         password: 'password456',
     },
     {
-        username: 'Sabrina Soto',
+        name: 'Sabrina Soto',
         email: 'sabrina13@email.com',
         password: 'password789',
     }, 
     {
-        username: 'Selena Soto',
+        name: 'Selena Soto',
         email: 'selena21@email.com',
         password: 'password000',
     },

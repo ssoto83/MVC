@@ -7,18 +7,18 @@ Post.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
+      allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     content: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.STRING,
     },
-    created_at: {
+    date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
@@ -26,13 +26,16 @@ Post.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user', // Reference to User model
+        model: 'user',
         key: 'id',
       },
     },
   },
   {
     sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
     modelName: 'post',
   }
 );
