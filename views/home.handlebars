@@ -1,0 +1,11 @@
+{{!-- views/home.handlebars --}}
+<h1>Welcome to My Blog</h1>
+<a href="/signup">Sign Up</a>
+<a href="/login">Login</a>
+
+{{#each posts}}
+    <div>
+        <h2><a href="/posts/{{this.id}}">{{this.title}}</a></h2>
+        <p>{{this.created_at}}</p>
+    </div>
+{{/each}}
