@@ -1,12 +1,10 @@
-# Model View Controller (MVC)
+# Model View Controller (MVC) - Tech Blog
 ## Description  
 
 
 
 ## Features
-Connects to a PostgreSQL database using Sequelize
-API routes for managing categories, products, and tags
-Support for GET, POST, PUT, and DELETE operations  
+
 
 ## Table of Contents    
 
@@ -29,15 +27,15 @@ Please ensure to have the following dependencies installed:
 
 ##  Repository link  
 
-https://github.com/ssoto83/E-Commerce-Back-End.git  
+https://ssoto83.github.io/MVC/
 
 
 
 
 ## Application screenshot  
 
-![GET screenshot test from Insomnia](../E-CommerceBackEnd/Insomnia-test-images/GET.png)    
-![POST screenshot test from Insomnia](../E-CommerceBackEnd/Insomnia-test-images/POST.png)  
-![PUT screenshot test from Insomnia](../E-CommerceBackEnd/Insomnia-test-images/PUT.png)  
-![DELETE screenshot test from Insomnia](../E-CommerceBackEnd/Insomnia-test-images/DELETE.png)  
+![GET screenshot test from Insomnia](..//GET.png)    
+![POST screenshot test from Insomnia](..//POST.png)  
+![PUT screenshot test from Insomnia](../.png)  
+![DELETE screenshot test from Insomnia](../.png)  
  

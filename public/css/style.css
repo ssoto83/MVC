@@ -1,0 +1,123 @@
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1f1f1f; /* Darker header */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+nav a {
+    color: #ffffff; /* White text for links */
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #bb86fc; /* Light purple on hover */
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+article {
+    background-color: #1e1e1e; /* Slightly lighter background for articles */
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+article:hover {
+    background-color: #272727; /* Darker on hover */
+}
+
+article h3 {
+    font-size: 1.5rem;
+    color: #bb86fc; /* Light purple for post titles */
+}
+
+footer {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    color: #e0e0e0;
+}
+
+.error {
+    background-color: #ff4d4d; /* Red background for errors */
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+input, button, textarea {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+input, textarea {
+    background-color: #2a2a2a; /* Dark input fields */
+    color: #e0e0e0;
+}
+
+button {
+    background-color: #bb86fc; /* Button background */
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #9b59b6; /* Darker on hover */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav a {
+        margin: 0 10px;
+    }
+}
