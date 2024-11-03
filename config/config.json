@@ -2,21 +2,21 @@
   "development": {
     "email": "your_email",
     "password": "your_password",
-    "database": "blogDB",
+    "database": "blogdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "email": "your_email",
     "password": "your_password",
-    "database": "blogDB_test",
+    "database": "blogdb_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "email": "your_email",
     "password": "your_password",
-    "database": "blogDB_production",
+    "database": "blogdb_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

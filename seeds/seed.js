@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Post } = require('../models'); // Adjust based on your model exports
+const { User, Post, Comment } = require('../models'); // Adjust based on your model exports
 
 const userData = [
     {
@@ -46,9 +46,36 @@ const postData = [
         user_id: 4, // This corresponds to Selena Soto
     },
 ];
+const commentData = [
+    {
+        content: 'Great post!',
+        user_id: 1, // Comment by Susan Soto
+        post_id: 1, // Comment on Testing testing
+    },
+    {
+        content: 'Thanks for sharing!',
+        user_id: 2, // Comment by Milo Soto
+        post_id: 1, // Comment on Testing testing
+    },
+    {
+        content: 'Interesting read!',
+        user_id: 3, // Comment by Sabrina Soto
+        post_id: 2, // Comment on Second test
+    },
+    {
+        content: 'Looking forward to more posts!',
+        user_id: 4, // Comment by Selena Soto
+        post_id: 3, // Comment on Third Post
+    },
+    {
+        content: 'Nice work!',
+        user_id: 1, // Comment by Susan Soto
+        post_id: 4, // Comment on Final test
+    },
+];
 
 const seedDatabase = async () => {
-    await sequelize.sync({ force: true }); // This will drop existing tables and recreate them
+    await sequelize.sync({ force: true }); // Drop existing tables and recreate them
 
     // Create users
     await User.bulkCreate(userData, {
@@ -57,10 +84,13 @@ const seedDatabase = async () => {
     });
 
     // Create posts
-    await Post.bulkCreate(postData, {
+    const createdPosts = await Post.bulkCreate(postData, {
         individualHooks: true,
         returning: true,
     });
+
+    // Create comments
+    await Comment.bulkCreate(commentData);
 
     console.log('Seeding complete!');
     process.exit(0);
