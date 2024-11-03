@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,10 +13,10 @@
             <a href="/">Home</a>
             <a href="/signup">Sign Up</a>
         </nav>
-    </header>
+    </header> --}}
     
     <main>
-        <form action="/api/users/login" method="POST"> <!-- Adjust action URL based on your route -->
+        <form action="/public/js/login.js" method="POST">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -29,13 +29,9 @@
         </form>
         
         {{#if error}}
-            <div class="error">{{error}}</div> <!-- Display error message if present -->
+            <div class="error">{{error}}</div> 
         {{/if}}
-    </main>
-    
-    <footer>
-        <p>&copy; {{year}} Your Blog Site</p>
-    </footer>
+    </main> 
     <script src="/public/js/login.js"></script>
 
 </body>

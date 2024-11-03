@@ -28,7 +28,7 @@ const postData = [
     {
         title: 'Testing testing',
         content: 'Test #1!',
-        user_id: 1, // Assuming this corresponds to Susana Soto
+        user_id: 1, // This corresponds to Susana Soto
     },
     {
         title: 'Second test',

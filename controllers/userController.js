@@ -3,22 +3,34 @@ const router = express.Router();
 const { User } = require('../models');
 const bcrypt = require('bcrypt');
 
-// User sign up
+// Serve the signup form
+router.get('/signup', (req, res) => {
+  res.render('signup'); 
+});
+
+// Handle signup form submission
 router.post('/signup', async (req, res) => {
   try {
-    const { username, password, email } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    
-    const newUser = await User.create({
-      username,
-      password: hashedPassword,
-      email,
-    });
+      const { username, password, email } = req.body;
 
-    req.session.userId = newUser.id; // Save user ID in session
-    res.status(201).json(newUser);
+      // Check if username already exists
+      const existingUser = await User.findOne({ where: { username } });
+      if (existingUser) {
+          return res.status(400).json({ message: 'Username already exists' });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = await User.create({
+          username,
+          password: hashedPassword,
+          email,
+      });
+
+      req.session.userId = newUser.id; // Save user ID in session
+      res.status(201).json(newUser);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating user' });
+      console.error('Error during signup:', error);
+      res.status(500).json({ message: 'Error creating user' });
   }
 });
 
