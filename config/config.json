@@ -1,23 +1,24 @@
 {
   "development": {
-    "email": "your_email",
-    "password": "your_password",
+    "username": "process.env.DB_USER",
+    "password": "process.env.DB_PASSWORD",
     "database": "blogdb",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
-    "email": "your_email",
-    "password": "your_password",
+    "username": "process.env.DB_USER",
+    "password": "process.env.DB_PASSWORD",
     "database": "blogdb_test",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-    "email": "your_email",
-    "password": "your_password",
+    "username": "process.env.DB_USER",
+    "password": "process.env.DB_PASSWORD",
     "database": "blogdb_production",
-    "host": "localhost",
+    "host": "process.env.DB_HOST" || "localhost",
     "dialect": "postgres"
   }
 }
+
