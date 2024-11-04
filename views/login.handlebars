@@ -16,7 +16,7 @@
     </header> --}}
     
     <main>
-        <form action="/public/js/login.js" method="POST">
+        <form action="login.handlebars" method="POST">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -32,7 +32,7 @@
             <div class="error">{{error}}</div> 
         {{/if}}
     </main> 
-    <script src="/public/js/login.js"></script>
+    <script src="login.handlebars"></script>
 
 </body>
 </html>
