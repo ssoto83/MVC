@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js",
-    "render-build": "npm install && npm run build"
-  },
+    "seed": "node seeds/seed.js"
+   },
   "keywords": [],
   "author": "",
   "license": "ISC",
