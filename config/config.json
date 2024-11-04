@@ -3,21 +3,21 @@
     "email": "your_email",
     "password": "your_password",
     "database": "blogdb",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "email": "your_email",
     "password": "your_password",
     "database": "blogdb_test",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
     "email": "your_email",
     "password": "your_password",
     "database": "blogdb_production",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }
