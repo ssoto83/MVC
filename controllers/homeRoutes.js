@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
       logged_in: req.session.logged_in 
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).render('error', { message: 'Error fetching posts' }); // Render an error page
   }
 });
 
@@ -37,6 +37,9 @@ router.get('/post/:id', async (req, res) => {
         },
       ],
     });
+    if (!postData) {
+      return res.status(404).render('404'); // Render 404 page if post not found
+    }
 
     const post = postData.get({ plain: true });
 
@@ -45,11 +48,12 @@ router.get('/post/:id', async (req, res) => {
       logged_in: req.session.logged_in
     });
   } catch (err) {
-    res.status(500).json(err);
+    console.error('Error fetching post:', err);
+    res.status(500).render('error', { message: 'Error fetching post' }); // Render an error page
   }
 });
 
-// Use withAuth middleware to prevent access to route
+// Profile route - protected
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -58,6 +62,11 @@ router.get('/profile', withAuth, async (req, res) => {
       include: [{ model: Post }],
     });
 
+    // Check if the user exists
+    if (!userData) {
+      return res.status(404).render('404'); // Render 404 page if user not found
+    }
+
     const user = userData.get({ plain: true });
 
     res.render('profile', {
@@ -65,18 +74,20 @@ router.get('/profile', withAuth, async (req, res) => {
       logged_in: true
     });
   } catch (err) {
-    res.status(500).json(err);
+    console.error('Error fetching user profile:', err);
+    res.status(500).render('error', { message: 'Error fetching profile' }); // Render an error page
   }
 });
 
+// Login route
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  // If the user is already logged in, redirect to profile
   if (req.session.logged_in) {
     res.redirect('/profile');
     return;
   }
 
-  res.render('login');
+  res.render('login'); // Render login page
 });
 
 module.exports = router;

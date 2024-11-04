@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Post } = require('../models'); 
-const withAuth = require('../utils/auth');
+const withAuth = require('../utils/authMiddleware');
 
 // Home route (public)
 router.get('/', (req, res) => {
@@ -10,6 +10,9 @@ router.get('/', (req, res) => {
 
 // Login route (public)
 router.get('/login', (req, res) => {
+    if (req.session.userId) {
+        return res.redirect('/dashboard'); // Redirect logged-in users to dashboard
+    }
     res.render('login'); // Render your login view
 });
 

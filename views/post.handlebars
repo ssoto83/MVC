@@ -1,0 +1,26 @@
+{{> header}}
+
+<div class="post-container">
+    <h1>{{title}}</h1>
+    <p>By {{author}} on {{dateCreated}}</p>
+    <div class="post-content">
+        <p>{{content}}</p>
+    </div>
+
+    <h3>Comments:</h3>
+    <div class="comments-section">
+        {{#each comments}}
+            <div class="comment">
+                <p><strong>{{this.username}}:</strong> {{this.content}} <em>on {{this.dateCreated}}</em></p>
+            </div>
+        {{/each}}
+    </div>
+
+    {{!-- Form to add a new comment --}}
+    <form id="comment-form">
+        <textarea name="comment" placeholder="Leave a comment..." required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{{> footer}}

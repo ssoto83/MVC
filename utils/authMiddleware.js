@@ -4,9 +4,9 @@ const { User } = require('../models');
 // To protect routes that require authentication
 const withAuth = (req, res, next) => {
   if (!req.session.userId) {
-    return res.status(401).json({ message: 'Unauthorized' });
+    return res.status(401).json({ message: 'Unauthorized. Please log in.' });
   }
-  next();
+  next(); // If user is authenticated proceed to the next middleware
 };
 
 module.exports = withAuth;
