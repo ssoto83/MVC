@@ -29,9 +29,6 @@ const sess = {
   }),
 };
 
-// Middleware for serving static files
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Logging middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
@@ -48,6 +45,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
+
+// Middleware for serving static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -4,9 +4,13 @@
 <ul>
     {{#each user.posts}}
         <li>{{this.title}} - {{this.content}}</li>
+     {{else}}
+        <li>No posts available.</li>
     {{/each}}
 </ul>
 
 <form method="POST" action="/logout">
     <button type="submit">Logout</button>
 </form>
+
+ <script src="/js/dashboard.js"></script>

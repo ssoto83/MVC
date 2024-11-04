@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const posts = await Post.findAll();
     res.json(posts);
   } catch (error) {
-    console.error(error);
+    console.error('Error retrieving posts:', error);
     res.status(500).json({ message: 'Error retrieving posts' });
   }
 });
@@ -23,12 +23,12 @@ router.get('/:id', async (req, res) => {
     }
     res.json(post);
   } catch (error) {
-    console.error(error);
+    console.error('Error retrieving post:', error);
     res.status(500).json({ message: 'Error retrieving post' });
   }
 });
 
-// To create a New Post
+// Create a New Post
 router.post('/', withAuth, async (req, res) => {
   try {
     const { title, content } = req.body;
@@ -39,12 +39,12 @@ router.post('/', withAuth, async (req, res) => {
     });
     res.status(201).json(newPost); // Return the newly created post
   } catch (error) {
-    console.error(error);
+    console.error('Error creating post:', error);
     res.status(500).json({ message: 'Error creating post' });
   }
 });
 
-// To update a Post
+// Update a Post
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const postId = req.params.id;
@@ -64,12 +64,12 @@ router.put('/:id', withAuth, async (req, res) => {
 
     res.status(200).json({ message: 'Post updated successfully' }); // Indicate successful update
   } catch (error) {
-    console.error(error);
+    console.error('Error updating post:', error);
     res.status(500).json({ message: 'Error updating post' });
   }
 });
 
-// To delete a Post
+// Delete a Post
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postId = req.params.id;
@@ -84,7 +84,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     await Post.destroy({ where: { id: postId } });
     res.status(204).send(); // No content to send back
   } catch (error) {
-    console.error(error);
+    console.error('Error deleting post:', error);
     res.status(500).json({ message: 'Error deleting post' });
   }
 });

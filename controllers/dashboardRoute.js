@@ -28,7 +28,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
             return res.status(404).render('404'); // Render a 404 page if user not found
         }
 
-        res.render('dashboard', { user: userData }); // Render dashboard with user data
+        const user = userData.get({ plain: true }); // Serialize user data
+        res.render('dashboard', { user }); // Render dashboard with user data
     } catch (error) {
         console.error('Error fetching user data:', error);
         res.status(500).render('error', { message: 'Server error' }); // Render an error page
