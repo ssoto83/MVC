@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Example: Fetch user data from the server
     async function fetchUserData() {
         try {
-            const response = await fetch('//user'); 
+            const response = await fetch('/api/user'); 
             if (!response.ok) throw new Error('Failed to fetch user data');
             const userData = await response.json();
             // Display user data on the dashboard
