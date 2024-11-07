@@ -1,12 +1,13 @@
-// utils/authMiddleware.js
-const { User } = require('../models');
-
-// To protect routes that require authentication
+// User authentication
 const withAuth = (req, res, next) => {
-  if (!req.session.userId) {
-    return res.status(401).json({ message: 'Unauthorized. Please log in.' });
+  console.log(req.session.logged_in);
+  // If the user is not logged in, redirect the request to the login route
+  if (!req.session.logged_in) {
+    res.redirect("/login");
+  } else {
+    next();
   }
-  next(); // If user is authenticated proceed to the next middleware
 };
 
+// Export
 module.exports = withAuth;

@@ -9,13 +9,13 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 require('dotenv').config(); // Load environment variables
 
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3010;
 
 // Custom helpers
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: process.env.SESSION_SECRET || 'secretshh', 
+  secret: process.env.SESSION_SECRET || 'secretshh',
   cookie: {
     maxAge: 300000,
     httpOnly: true,
@@ -29,32 +29,28 @@ const sess = {
   }),
 };
 
-// Logging middleware
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
-
 app.use(session(sess));
 
-// Inform Express.js on which template engine to use
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+// Template engine to use
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-// Middleware for serving static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Syncs sequelize with database
+// sequelize.sync({ force: false }).then(() => {
+//   app.listen(PORT, () => console.log("Now listening"));
+// });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).render('error', { message: 'Something went wrong!' });
-});
-
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
-});
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('Database synced!');
+  })
+  .catch(err => {
+    console.log('Error syncing database:', err);
+  });

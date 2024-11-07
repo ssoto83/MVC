@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "seed": "node seeds/seed.js"
-   },
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -18,7 +18,8 @@
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
+    "mysql2": "^3.11.4",
     "pg": "^8.13.0",
-    "sequelize": "^6.37.4"
+    "sequelize": "^6.37.5"
   }
 }

@@ -1,31 +1,22 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Favorite Tech Blog</title>
-    <link rel="stylesheet" href="../public/css/style.css"> 
-</head>
-<body> --}}
-    <main>
-        <h2>Welcome to the Blog!</h2>
-
-        {{#if posts.length}}
-            <div class="posts">
-                {{#each posts}}
-                    <article>
-                        <h3><a href="/post/{{this.id}}">{{this.title}}</a></h3>
-                        <p>Posted by {{this.user.username}} on {{this.created_at}}</p>
-                        <p>{{this.content}}</p>
-                    </article>
-                {{/each}}
-            </div>
-        {{else}}
-            <p>No blog posts available. Start by creating one!</p>
-        {{/if}}
-    </main>
-
-    <script src="/js/dashboard.js"></script>
-
-</body>
-</html>
+{{! Homepage }}
+{{! Loop over each object in the Post }}
+<div class="container">
+  <div class="row homepage-main">
+    {{#each Posts as |Post|}}
+      <div class="row mb-4 project card text-dark shadow">
+        <div class="card-header">
+          <h3>
+            <a href="/Post/{{Post.id}}">{{Post.title}}</a>
+          </h3>
+          <p>Created by
+            {{Post.user.name}}
+            on
+            {{format_date Post.date_created}}</p>
+        </div>
+        <div class="card-body">
+          <p>{{Post.description}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

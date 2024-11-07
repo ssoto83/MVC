@@ -1,24 +1,27 @@
 const Sequelize = require('sequelize');
-require('dotenv').config();
+require('dotenv').config(); // Make sure .env file is loaded
 
-let sequelize;
+const sequelize = new Sequelize(
+  process.env.DB_NAME,         // Database name (blogdb)
+  process.env.DB_USER,         // Database user
+  process.env.DB_PASSWORD,     // Database password
+  {
+    host: process.env.DB_HOST || 'localhost', // Default to localhost
+    port: process.env.DB_PORT || 5432,        // Default port for PostgreSQL
+    dialect: 'postgres',                      // Make sure you're using PostgreSQL
+    dialectOptions: {
+      decimalNumbers: true,                   // Optional: for handling decimal numbers
+    },
+  }
+);
 
-if (process.env.DB_URL) {
-  // Use DB_URL for deployment
-  sequelize = new Sequelize(process.env.DB_URL, {
-    dialect: 'postgres',
+// Test connection
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connection to PostgreSQL established successfully.');
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
   });
-} else {
-  // Fallback for local development
-  sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-      host: 'localhost',
-      dialect: 'postgres'
-    }
-  );
-}
 
 module.exports = sequelize;

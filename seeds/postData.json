@@ -1,0 +1,14 @@
+[
+    {
+      "title": "The future of AI",
+      "description": "AI is shaping a future where intelligent systems not only augment human capabilities but also drive innovation across every industry, making once-impossible solutions a reality.",
+      "date_created": "October 15, 2024",
+      "user_id": 1
+    },
+    {
+      "title": "Progressive Web Apps (PWA's)",
+      "description": "PWAs are web applications that take advantage of modern web capabilities to deliver a more native app-like experience. PWAs often leverage client-side rendering but can use SSR or SSG to improve performance and SEO.",
+      "date_created": "November 2, 2024",
+      "user_id": 2
+    }
+]

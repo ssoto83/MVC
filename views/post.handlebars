@@ -1,22 +1,29 @@
-<div class="post-container">
-    <h1>{{title}}</h1>
-    <p>By {{author}} on {{dateCreated}}</p>
-    <div class="post-content">
-        <p>{{content}}</p>
-    </div>
-
-    <h3>Comments:</h3>
-    <div class="comments-section">
-        {{#each comments}}
-            <div class="comment">
-                <p><strong>{{this.username}}:</strong> {{this.content}} <em>on {{this.dateCreated}}</em></p>
+{{!-- Blog Post Page --}}
+<div class="container">
+    <div class="row">
+        <div class="card text-dark shadow mb-3 Post-main">
+            <div class="text-center mx-auto p-3">
+                <h2>{{title}}</h2>
+                <p>Created by {{user.name}} on {{format_date date_created}}</p>
+                <p>{{description}}</p>
+                <button class="btn btn-dark" id="editBtn">Edit</button>
+                <button class="btn btn-dark" id="deleteBtn">Delete</button>
             </div>
-        {{/each}}
-    </div>
 
-    {{!-- Form to add a new comment --}}
-    <form id="comment-form">
-        <textarea name="comment" placeholder="Leave a comment..." required></textarea>
-        <button type="submit">Submit</button>
-    </form>
+            <div class="text-center">
+                <h3>Comments</h3>
+                {{#each comments as |comment| }}
+                    <div>
+                        <p>{{comment.comment_body}} by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
 </div>
+
+{{> comment-form }}
+
+<script src="/js/newCommentHandler.js"></script>
+<script src="/js/deletePost.js"></script>
+<script src="/js/editPost.js"></script>

@@ -69,11 +69,6 @@ https://mvc-jjch.onrender.com
 
 ## Application screenshot  
 
-![](..//GET.png)    
-![](..//POST.png)  
-![](../.png)  
-![](../.png)    
-
 ## License  
 
 MIT License  

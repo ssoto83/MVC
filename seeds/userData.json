@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Susan Soto",
+        "email": "susans@email.com",
+        "password": "testing123"
+    },
+    {
+        "name": "Milo Soto",
+        "email": "msoto@email.com",
+        "password": "testing456"
+    },
+    {
+        "name": "Sabrina Soto",
+        "email": "sabrina13@email.com",
+        "password": "testing789"
+    }, 
+    {
+        "name": "Selena Soto",
+        "email": "selena21@email.com",
+        "password": "testing000"
+    }
+]

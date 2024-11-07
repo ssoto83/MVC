@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User, Post } = require('../models'); 
-const withAuth = require('../utils/authMiddleware');
+const { User, Post } = require('../../models'); 
+const withAuth = require('../../utils/authMiddleware');
 
 // Home route (public)
 router.get('/', (req, res) => {
@@ -35,6 +35,37 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.status(500).render('error', { message: 'Server error' }); // Render an error page
     }
 });
+
+// Login route (handles POST request)
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body; // Assuming form sends username and password
+
+        // Look up user in database
+        const user = await User.findOne({ where: { username } });
+
+        if (!user) {
+            return res.status(400).render('login', { message: 'User not found!' }); // Handle invalid user
+        }
+
+        // Compare passwords (make sure to use a proper password check, e.g., bcrypt)
+        const validPassword = await user.checkPassword(password); // Assuming `checkPassword` method exists
+
+        if (!validPassword) {
+            return res.status(400).render('login', { message: 'Invalid credentials!' }); // Handle invalid password
+        }
+
+        // Store user ID in session to track logged-in user
+        req.session.userId = user.id;
+
+        // Redirect to dashboard upon successful login
+        res.redirect('/dashboard');
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).render('error', { message: 'Server error during login' });
+    }
+});
+
 
 // Logout route
 router.post('/logout', (req, res) => {
